@@ -3,6 +3,10 @@ package br.com.caelum.cadastro.olamundo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import br.com.caelum.cadastro.R;
 
@@ -15,8 +19,18 @@ public class OlaMundoActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ola_mundo);
-
         Log.i("CICLO DE VIDA", "onCreate");
+
+        Button copiar = (Button)findViewById(R.id.botao);
+        copiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText campo = (EditText)findViewById(R.id.seu_campo);
+                String valorCampo = campo.getText().toString();
+                TextView label = (TextView)findViewById(R.id.campo_exibir);
+                label.setText(valorCampo);
+            }
+        });
     }
 
     @Override
