@@ -9,6 +9,8 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".olamundo.OlaMundoActivity">
+        </activity>
+        <activity android:name=".activity.ListaAlunosActivity" android:label="Lista Alunos">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
