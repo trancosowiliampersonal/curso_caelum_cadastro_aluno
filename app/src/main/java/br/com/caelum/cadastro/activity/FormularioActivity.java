@@ -3,6 +3,9 @@ package br.com.caelum.cadastro.activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import br.com.caelum.cadastro.R;
 
@@ -14,5 +17,13 @@ public class FormularioActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+
+        Button botao = (Button)findViewById(R.id.formulario_botao);
+        botao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(FormularioActivity.this, "Você clicou no botão", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
