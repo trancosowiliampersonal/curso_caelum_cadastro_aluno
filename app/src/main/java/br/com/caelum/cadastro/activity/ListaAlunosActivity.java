@@ -26,11 +26,7 @@ public class ListaAlunosActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
-        final String[] alunos = {"Anderson", "Filipe", "Guilherme"};
-
         this.listaAlunos = (ListView)findViewById(R.id.lista_alunos);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alunos);
-        listaAlunos.setAdapter(adapter);
 
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -62,6 +58,11 @@ public class ListaAlunosActivity extends ActionBarActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        carregaLista();
+    }
 
     private void carregaLista(){
         AlunoDAO alunoDAO = new AlunoDAO(this);
