@@ -2,7 +2,12 @@ package br.com.caelum.cadastro.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.caelum.cadastro.modelo.Aluno;
 
@@ -38,6 +43,19 @@ public class AlunoDAO extends AbstractDAO{
         aluno.setId(getWritableDatabase().insert(TABLE, null, cv));
     }
 
+    public List<Aluno> getLista(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        Cursor c = null;
+        try{
+            c = db.rawQuery("SELECT * FROM " + TABLE + ";", null);
+        }catch (Exception e){
+            Log.e("Exception", "getLista");
+        }
+
+        return cursorToAlunos(c);
+    }
+
     private ContentValues alunoToContentValues(Aluno aluno){
         ContentValues cv = new ContentValues();
 
@@ -48,5 +66,26 @@ public class AlunoDAO extends AbstractDAO{
         cv.put("nota", aluno.getNota());
 
         return cv;
+    }
+
+    private List<Aluno> cursorToAlunos(Cursor c){
+        List<Aluno> alunos = new ArrayList<Aluno>();
+
+        Aluno aluno;
+        while(c.moveToNext()){
+            aluno = new Aluno();
+
+            aluno.setId(c.getLong(c.getColumnIndex("id")));
+            aluno.setNome(c.getString(c.getColumnIndex("nome")));
+            aluno.setTelefone(c.getString(c.getColumnIndex("telefone")));
+            aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
+            aluno.setSite(c.getString(c.getColumnIndex("site")));
+            aluno.setNota(c.getFloat(c.getColumnIndex("nota")));
+
+
+            alunos.add(aluno);
+        }
+
+        return alunos;
     }
 }
