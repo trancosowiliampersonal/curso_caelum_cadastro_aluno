@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.caelum.cadastro.R;
+import br.com.caelum.cadastro.dao.AlunoDAO;
 import br.com.caelum.cadastro.helper.FormularioHelper;
 import br.com.caelum.cadastro.modelo.Aluno;
 
@@ -48,7 +49,9 @@ public class FormularioActivity extends ActionBarActivity {
             case R.id.menu_formulario_ok:
                 Aluno aluno = helper.pegaAlunoFormulario();
 
-                Toast.makeText(this, aluno.getNome(), Toast.LENGTH_SHORT).show();
+                AlunoDAO alunoDAO = new AlunoDAO(this);
+                alunoDAO.inserir(aluno);
+
                 finish();
                 return false;
             default:
