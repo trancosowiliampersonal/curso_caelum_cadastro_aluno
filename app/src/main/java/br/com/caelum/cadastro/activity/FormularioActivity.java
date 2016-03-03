@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import br.com.caelum.cadastro.R;
 import br.com.caelum.cadastro.helper.FormularioHelper;
+import br.com.caelum.cadastro.modelo.Aluno;
 
 /**
  * Created by Wiliam on 03/03/2016.
@@ -45,7 +46,9 @@ public class FormularioActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_formulario_ok:
-                Toast.makeText(this,"Ok Clicado", Toast.LENGTH_SHORT).show();
+                Aluno aluno = helper.pegaAlunoFormulario();
+
+                Toast.makeText(this, aluno.getNome(), Toast.LENGTH_SHORT).show();
                 finish();
                 return false;
             default:
