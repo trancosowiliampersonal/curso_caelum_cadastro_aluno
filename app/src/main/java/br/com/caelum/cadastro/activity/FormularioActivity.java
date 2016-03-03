@@ -3,6 +3,7 @@ package br.com.caelum.cadastro.activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -26,4 +27,11 @@ public class FormularioActivity extends ActionBarActivity {
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_formulario, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }
