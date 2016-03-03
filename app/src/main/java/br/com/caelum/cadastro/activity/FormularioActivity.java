@@ -10,15 +10,21 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import br.com.caelum.cadastro.R;
+import br.com.caelum.cadastro.helper.FormularioHelper;
 
 /**
  * Created by Wiliam on 03/03/2016.
  */
 public class FormularioActivity extends ActionBarActivity {
+
+    FormularioHelper helper;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+
+        helper = new FormularioHelper(this);
 
         Button botao = (Button)findViewById(R.id.formulario_botao);
         botao.setOnClickListener(new View.OnClickListener() {
