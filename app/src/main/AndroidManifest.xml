@@ -11,12 +11,12 @@
         <activity android:name=".olamundo.OlaMundoActivity">
         </activity>
         <activity android:name=".activity.ListaAlunosActivity" android:label="Lista Alunos">
-        </activity>
-        <activity android:name=".activity.FormularioActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.FormularioActivity">
         </activity>
     </application>
 </manifest>
