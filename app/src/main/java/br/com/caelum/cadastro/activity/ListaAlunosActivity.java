@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,12 +37,20 @@ public class ListaAlunosActivity extends ActionBarActivity {
         listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String mensagem = (String)parent.getItemAtPosition(position);
+                String mensagem = (String) parent.getItemAtPosition(position);
                 mensagem = "Clique longo: " + mensagem;
 
 
                 Toast.makeText(ListaAlunosActivity.this, mensagem, Toast.LENGTH_LONG).show();
                 return true;
+            }
+        });
+
+        Button botaoAdicionar = (Button)findViewById(R.id.lista_alunos_floating_button);
+        botaoAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ListaAlunosActivity.this, "Floating Button clicado!", Toast.LENGTH_LONG).show();
             }
         });
     }
