@@ -27,14 +27,6 @@ public class FormularioActivity extends ActionBarActivity {
         setContentView(R.layout.activity_formulario);
 
         helper = new FormularioHelper(this);
-
-        Button botao = (Button)findViewById(R.id.formulario_botao);
-        botao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(FormularioActivity.this, "Você clicou no botão", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
