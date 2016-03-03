@@ -10,11 +10,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.com.caelum.cadastro.R;
+import br.com.caelum.cadastro.dao.AlunoDAO;
+import br.com.caelum.cadastro.modelo.Aluno;
 
 public class ListaAlunosActivity extends ActionBarActivity {
 
-    ListView listaAlunos;
+    private ListView listaAlunos;
+    private List<Aluno> alunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,16 @@ public class ListaAlunosActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    private void carregaLista(){
+        AlunoDAO alunoDAO = new AlunoDAO(this);
+        alunos = alunoDAO.getLista();
+        alunoDAO.close();
+
+        ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this, android.R.layout.simple_list_item_1, alunos);
+        listaAlunos.setAdapter(adapter);
     }
 
 }
