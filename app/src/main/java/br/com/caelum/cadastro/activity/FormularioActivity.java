@@ -47,12 +47,16 @@ public class FormularioActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_formulario_ok:
-                Aluno aluno = helper.pegaAlunoFormulario();
+                if(helper.temNome()) {
+                    Aluno aluno = helper.pegaAlunoFormulario();
 
-                AlunoDAO alunoDAO = new AlunoDAO(this);
-                alunoDAO.inserir(aluno);
+                    AlunoDAO alunoDAO = new AlunoDAO(this);
+                    alunoDAO.inserir(aluno);
 
-                finish();
+                    finish();
+                }else{
+                    helper.mostraErro();
+                }
                 return false;
             default:
                 return super.onOptionsItemSelected(item);
