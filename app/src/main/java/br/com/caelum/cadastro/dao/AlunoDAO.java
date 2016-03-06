@@ -56,6 +56,11 @@ public class AlunoDAO extends AbstractDAO{
         return cursorToAlunos(c);
     }
 
+    public void deleta(Aluno aluno){
+        String[] args = {aluno.getId() + ""};
+        getWritableDatabase().delete(TABLE, "id = ?", args);
+    }
+
     private ContentValues alunoToContentValues(Aluno aluno){
         ContentValues cv = new ContentValues();
 
