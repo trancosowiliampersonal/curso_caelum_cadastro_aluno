@@ -60,6 +60,9 @@ public class ListaAlunosActivity extends ActionBarActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
 
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
+        final Aluno alunoSelecionado = (Aluno) listaAlunos.getAdapter().getItem(info.position);
+
         MenuItem menuLigar = menu.add("Ligar");
 
         MenuItem menuSms = menu.add("Enviar SMS");
@@ -70,7 +73,18 @@ public class ListaAlunosActivity extends ActionBarActivity {
 
         MenuItem menuDeletar = menu.add("Deletar");
 
+        menuDeletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
+                alunoDAO.deleta(alunoSelecionado);
+                carregaLista();
+
+                return false;
+            }
+        });
     }
+
     private void carregaLista(){
         AlunoDAO alunoDAO = new AlunoDAO(this);
         alunos = alunoDAO.getLista();
