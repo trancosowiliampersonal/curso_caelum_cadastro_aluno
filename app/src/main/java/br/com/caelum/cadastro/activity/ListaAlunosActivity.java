@@ -36,18 +36,6 @@ public class ListaAlunosActivity extends ActionBarActivity {
             }
         });
 
-        listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String mensagem = (String) parent.getItemAtPosition(position);
-                mensagem = "Clique longo: " + mensagem;
-
-
-                Toast.makeText(ListaAlunosActivity.this, mensagem, Toast.LENGTH_LONG).show();
-                return true;
-            }
-        });
-
         Button botaoAdicionar = (Button)findViewById(R.id.lista_alunos_floating_button);
         botaoAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
