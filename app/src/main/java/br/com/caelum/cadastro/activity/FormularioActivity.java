@@ -1,5 +1,6 @@
 package br.com.caelum.cadastro.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
@@ -28,6 +29,13 @@ public class FormularioActivity extends ActionBarActivity {
         setContentView(R.layout.activity_formulario);
 
         helper = new FormularioHelper(this);
+
+        Intent intent = this.getIntent();
+        Aluno alunoEditar = (Aluno)intent.getSerializableExtra(FormularioActivity.ALUNO_SELECIONADO);
+
+        if(alunoEditar != null){
+            helper.colocarNoFormulario(alunoEditar);
+        }
     }
 
     @Override
@@ -44,8 +52,13 @@ public class FormularioActivity extends ActionBarActivity {
                     Aluno aluno = helper.pegaAlunoFormulario();
 
                     AlunoDAO alunoDAO = new AlunoDAO(this);
-                    alunoDAO.inserir(aluno);
 
+                    if(aluno.getId() == null) {
+                        alunoDAO.inserir(aluno);
+                    }else {
+                        alunoDAO.alterar(aluno);
+                    }
+                    alunoDAO.close();
                     finish();
                 }else{
                     helper.mostraErro();
