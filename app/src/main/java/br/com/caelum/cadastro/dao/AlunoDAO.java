@@ -43,6 +43,14 @@ public class AlunoDAO extends AbstractDAO{
         aluno.setId(getWritableDatabase().insert(TABLE, null, cv));
     }
 
+    public void alterar(Aluno aluno){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = alunoToContentValues(aluno);
+        cv.put("id", aluno.getId());
+        String[] args = {aluno.getId() + ""};
+        db.update(TABLE, cv, "id = ?", args);
+    }
+
     public List<Aluno> getLista(){
         SQLiteDatabase db = getReadableDatabase();
 
