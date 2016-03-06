@@ -37,6 +37,10 @@ public class ListaAlunosActivity extends ActionBarActivity {
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Aluno alunoSelecionado = (Aluno)listaAlunos.getAdapter().getItem(position);
+                Intent edicao = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+                edicao.putExtra(FormularioActivity.ALUNO_SELECIONADO, alunoSelecionado);
+                startActivity(edicao);
             }
         });
 
