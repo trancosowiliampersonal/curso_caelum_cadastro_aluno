@@ -3,6 +3,8 @@ package br.com.caelum.cadastro.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +30,8 @@ public class ListaAlunosActivity extends ActionBarActivity {
 
         this.listaAlunos = (ListView)findViewById(R.id.lista_alunos);
 
+        registerForContextMenu(listaAlunos);
+
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -52,6 +56,21 @@ public class ListaAlunosActivity extends ActionBarActivity {
         carregaLista();
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuItem menuLigar = menu.add("Ligar");
+
+        MenuItem menuSms = menu.add("Enviar SMS");
+
+        MenuItem menuMapa = menu.add("Achar no Mapa");
+
+        MenuItem menuNavegar = menu.add("Navegar no site");
+
+        MenuItem menuDeletar = menu.add("Deletar");
+
+    }
     private void carregaLista(){
         AlunoDAO alunoDAO = new AlunoDAO(this);
         alunos = alunoDAO.getLista();
