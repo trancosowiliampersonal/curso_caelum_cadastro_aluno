@@ -1,5 +1,7 @@
 package br.com.caelum.cadastro.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -76,10 +78,19 @@ public class ListaAlunosActivity extends ActionBarActivity {
         menuDeletar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                AlunoDAO alunoDAO = new AlunoDAO(ListaAlunosActivity.this);
-                alunoDAO.deleta(alunoSelecionado);
-                carregaLista();
-
+                new AlertDialog.Builder(ListaAlunosActivity.this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Deletar")
+                        .setMessage("Deseja mesmo deletar?")
+                        .setPositiveButton("Quero", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+                                dao.deleta(alunoSelecionado);
+                                dao.close();
+                                carregaLista();
+                            }
+                        }).setNegativeButton("Não", null).show();
                 return false;
             }
         });
