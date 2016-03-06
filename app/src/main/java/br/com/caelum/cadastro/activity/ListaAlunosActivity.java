@@ -37,8 +37,6 @@ public class ListaAlunosActivity extends ActionBarActivity {
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String mensagem = "Posicao Selecionada: " + position;
-                Toast.makeText(ListaAlunosActivity.this, mensagem, Toast.LENGTH_SHORT).show();
             }
         });
 

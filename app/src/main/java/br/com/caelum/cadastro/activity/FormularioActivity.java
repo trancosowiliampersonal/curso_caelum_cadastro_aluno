@@ -19,7 +19,8 @@ import br.com.caelum.cadastro.modelo.Aluno;
  */
 public class FormularioActivity extends ActionBarActivity {
 
-    FormularioHelper helper;
+    private FormularioHelper helper;
+    public static final String ALUNO_SELECIONADO = "alunoSelecionado";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
