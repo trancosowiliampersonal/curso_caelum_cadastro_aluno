@@ -47,13 +47,20 @@ public class AlunoDAO extends AbstractDAO{
         SQLiteDatabase db = getReadableDatabase();
 
         Cursor c = null;
+        List<Aluno> alunos = null;
+
         try{
             c = db.rawQuery("SELECT * FROM " + TABLE + ";", null);
+            alunos = cursorToAlunos(c);
         }catch (Exception e){
             Log.e("Exception", "getLista");
+        }finally {
+            if(c != null){
+                c.close();
+            }
         }
 
-        return cursorToAlunos(c);
+        return alunos;
     }
 
     public void deleta(Aluno aluno){
