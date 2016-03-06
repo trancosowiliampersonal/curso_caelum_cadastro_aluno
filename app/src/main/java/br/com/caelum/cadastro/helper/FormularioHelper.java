@@ -48,4 +48,14 @@ public class FormularioHelper {
     public void mostraErro() {
         nome.setError("Compo nome não pode ser vazio");
     }
+
+    public void colocarNoFormulario(Aluno aluno) {
+        this.aluno = aluno;
+        nome.setText(aluno.getNome());
+        telefone.setText(aluno.getTelefone());
+        endereco.setText(aluno.getEndereco());
+        site.setText(aluno.getSite());
+        nota.setRating(aluno.getNota());
+
+    }
 }
