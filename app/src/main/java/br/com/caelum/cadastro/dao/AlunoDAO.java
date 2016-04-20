@@ -84,6 +84,7 @@ public class AlunoDAO extends AbstractDAO{
         cv.put("endereco", aluno.getEndereco());
         cv.put("site", aluno.getSite());
         cv.put("nota", aluno.getNota());
+        cv.put("caminhoFoto", aluno.getCaminhoFoto());
 
         return cv;
     }
@@ -101,7 +102,7 @@ public class AlunoDAO extends AbstractDAO{
             aluno.setEndereco(c.getString(c.getColumnIndex("endereco")));
             aluno.setSite(c.getString(c.getColumnIndex("site")));
             aluno.setNota(c.getFloat(c.getColumnIndex("nota")));
-
+            aluno.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
 
             alunos.add(aluno);
         }
