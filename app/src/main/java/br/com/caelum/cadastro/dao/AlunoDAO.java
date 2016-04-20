@@ -34,8 +34,11 @@ public class AlunoDAO extends AbstractDAO{
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE);
-        onCreate(db);
+        switch (oldVersion) {
+            case 1:
+                db.execSQL("ALTER TABLE " + TABLE + " ADD COLUMN caminhoFoto TEXT");
+        }
+
     }
 
     public void inserir(Aluno aluno){
