@@ -88,4 +88,16 @@ public class FormularioActivity extends ActionBarActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode == Constantes.REQUEST_CODE_TIRAR_FOTO ){
+            if(resultCode == Activity.RESULT_OK){
+                helper.carregaImagem(this.localArquivoFoto);
+            }else{
+                this.localArquivoFoto = null;
+            }
+        }
+    }
 }
