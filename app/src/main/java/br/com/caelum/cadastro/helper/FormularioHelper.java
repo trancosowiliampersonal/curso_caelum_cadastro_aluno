@@ -1,6 +1,8 @@
 package br.com.caelum.cadastro.helper;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,5 +69,12 @@ public class FormularioHelper {
         return fotoButton;
     }
 
+    public void carregaImagem(String localArquivoFoto) {
+        Bitmap imagemFoto = BitmapFactory.decodeFile(localArquivoFoto);
+
+        foto.setImageBitmap(imagemFoto);
+        foto.setTag(localArquivoFoto);
+
+        foto.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 }
