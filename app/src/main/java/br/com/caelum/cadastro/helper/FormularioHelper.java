@@ -46,6 +46,8 @@ public class FormularioHelper {
         aluno.setSite(site.getText().toString());
         aluno.setNota(nota.getRating());
 
+        aluno.setCaminhoFoto((String) foto.getTag());
+
         return aluno;
     }
 
@@ -64,6 +66,12 @@ public class FormularioHelper {
         endereco.setText(aluno.getEndereco());
         site.setText(aluno.getSite());
         nota.setRating(aluno.getNota());
+
+        try {
+            carregaImagem(aluno.getCaminhoFoto());
+        }catch (Exception e){
+        }
+    }
 
     public Button getFotoButton(){
         return fotoButton;
